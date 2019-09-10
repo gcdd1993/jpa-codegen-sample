@@ -249,5 +249,5 @@ spring:
 确实删除了。
 这样写CRUD，是不是很方便呢？
 
-# SpringBoot1.x
+# [SpringBoot1.x](https://github.com/gcdd1993/jpa-codegen-sample/tree/master/jpa-codegen-sample-1)
 
