@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: sample-springboot-1.x
+  ## JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  #        format_sql: true
+  #        show_sql: true
+  datasource:
+    username: postgres
+    password: postgres
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.222.129:5432/postgres
+    hikari:
+      maximum-pool-size: 3
+
+  ## Jackson 配置
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    property-naming-strategy: SNAKE_CASE

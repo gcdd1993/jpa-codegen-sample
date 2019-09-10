@@ -1,0 +1,82 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.8.RELEASE'
+        querydslVersion = '4.2.1'
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10'
+        classpath 'io.franzbecker:gradle-lombok:3.1.0'
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE'
+    }
+    repositories {
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        maven { url "https://mvnrepository.com" }
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "io.franzbecker.gradle-lombok"
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
+
+group 'com.maxtropy'
+version "v0.1.0"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+querydsl {
+    jpa = true
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+repositories {
+    mavenLocal()
+    maven() {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    maven() {
+        url 'http://unidal.org/nexus/content/repositories/releases/'
+    }
+    maven {
+        url 'https://dl.bintray.com/gcdd1993/maven'
+    }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    // querydsl
+    compile 'com.querydsl:querydsl-jpa'
+
+    // jpa
+    runtime 'org.postgresql:postgresql'
+    compile 'org.hibernate:hibernate-java8'
+    compile 'com.zaxxer:HikariCP'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+    // jpa code generator
+    testCompile 'io.github.gcdd1993:jpa-codegen:v1.0.1'
+    testCompile 'org.freemarker:freemarker:2.3.28'
+}
