@@ -25,7 +25,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: "com.ewerk.gradle.plugins.querydsl"
 
-group 'com.maxtropy'
+group 'me.itlearner'
 version "v0.1.0"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
