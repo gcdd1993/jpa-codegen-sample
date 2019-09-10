@@ -44,13 +44,13 @@ public class SampleUserController extends BaseController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody @Validated SampleUserForm form,
                                     @PathVariable("id") Integer id) {
-        Optional<SampleUser> sampleUser = sampleUserService.update(form, id);
+        SampleUser sampleUser = sampleUserService.update(form, id);
         return created(sampleUser);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable("id") Integer id) {
-        Optional<SampleUser> sampleUser = sampleUserService.get(id);
+        SampleUser sampleUser = sampleUserService.get(id);
         return ok(sampleUser);
     }
 

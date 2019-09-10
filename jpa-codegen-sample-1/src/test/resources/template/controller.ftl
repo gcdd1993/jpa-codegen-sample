@@ -46,13 +46,13 @@ public class ${className} extends BaseController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody @Validated ${lastRenderResponse.form.className} form,
                                     @PathVariable("id") ${entity.id.className} id) {
-        Optional<${entity.className}> ${entity.className?uncap_first} = ${lastRenderResponse.service.className?uncap_first}.update(form, id);
+        ${entity.className} ${entity.className?uncap_first} = ${lastRenderResponse.service.className?uncap_first}.update(form, id);
         return created(${entity.className?uncap_first});
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable("id") ${entity.id.className} id) {
-        Optional<${entity.className}> ${entity.className?uncap_first} = ${lastRenderResponse.service.className?uncap_first}.get(id);
+        ${entity.className} ${entity.className?uncap_first} = ${lastRenderResponse.service.className?uncap_first}.get(id);
         return ok(${entity.className?uncap_first});
     }
 

@@ -50,7 +50,8 @@ public class ${className} {
      * @param id 实体id
      */
     public void delete(${entity.id.className} id) {
-        ${lastRenderResponse.repository.className?uncap_first}.delete(id);
+        ${lastRenderResponse.repository.className?uncap_first}.findById(id)
+                .ifPresent(${lastRenderResponse.repository.className?uncap_first}::delete);
     }
 
     /**
@@ -61,11 +62,13 @@ public class ${className} {
      * @return 实体对象
      */
     @Transactional
-    public ${entity.className} update(${lastRenderResponse.form.className} form, ${entity.id.className} id) {
-        ${entity.className} ${entity.className?uncap_first} = ${lastRenderResponse.repository.className?uncap_first}.findOne(id);
-        BeanUtils.copyProperties(form, ${entity.className?uncap_first});
-        // TODO 业务逻辑
-        return ${lastRenderResponse.repository.className?uncap_first}.save(${entity.className?uncap_first});
+    public Optional<${entity.className}> update(${lastRenderResponse.form.className} form, ${entity.id.className} id) {
+        return ${lastRenderResponse.repository.className?uncap_first}.findById(id)
+                .map(${entity.className?uncap_first} -> {
+                    BeanUtils.copyProperties(form, ${entity.className?uncap_first});
+                    // TODO 业务逻辑
+                    return ${lastRenderResponse.repository.className?uncap_first}.save(${entity.className?uncap_first});
+                });
     }
 
     /**
@@ -74,8 +77,8 @@ public class ${className} {
      * @param id 实体id
      * @return 实体对象
      */
-    public ${entity.className} get(${entity.id.className} id) {
-        return ${lastRenderResponse.repository.className?uncap_first}.findOne(id);
+    public Optional<${entity.className}> get(${entity.id.className} id) {
+        return ${lastRenderResponse.repository.className?uncap_first}.findById(id);
     }
 
     /**

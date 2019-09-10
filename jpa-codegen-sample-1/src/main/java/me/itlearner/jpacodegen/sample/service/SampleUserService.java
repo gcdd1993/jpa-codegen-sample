@@ -1,18 +1,19 @@
 package me.itlearner.jpacodegen.sample.service;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 import com.querydsl.core.BooleanBuilder;
+import org.springframework.data.domain.Pageable;
+import me.itlearner.jpacodegen.sample.util.PageUtils;
 import me.itlearner.jpacodegen.sample.entity.SampleUser;
 import me.itlearner.jpacodegen.sample.entity.repo.SampleUserRepository;
 import me.itlearner.jpacodegen.sample.form.SampleUserForm;
-import me.itlearner.jpacodegen.sample.util.PageUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import java.lang.Integer;
 
-import javax.transaction.Transactional;
 import java.util.Map;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 /**
@@ -47,8 +48,7 @@ public class SampleUserService {
      * @param id 实体id
      */
     public void delete(Integer id) {
-        sampleUserRepository.findById(id)
-                .ifPresent(sampleUserRepository::delete);
+        sampleUserRepository.delete(id);
     }
 
     /**
@@ -59,13 +59,11 @@ public class SampleUserService {
      * @return 实体对象
      */
     @Transactional
-    public Optional<SampleUser> update(SampleUserForm form, Integer id) {
-        return sampleUserRepository.findById(id)
-                .map(sampleUser -> {
-                    BeanUtils.copyProperties(form, sampleUser);
-                    // TODO 业务逻辑
-                    return sampleUserRepository.save(sampleUser);
-                });
+    public SampleUser update(SampleUserForm form, Integer id) {
+        SampleUser sampleUser = sampleUserRepository.findOne(id);
+        BeanUtils.copyProperties(form, sampleUser);
+        // TODO 业务逻辑
+        return sampleUserRepository.save(sampleUser);
     }
 
     /**
@@ -74,8 +72,8 @@ public class SampleUserService {
      * @param id 实体id
      * @return 实体对象
      */
-    public Optional<SampleUser> get(Integer id) {
-        return sampleUserRepository.findById(id);
+    public SampleUser get(Integer id) {
+        return sampleUserRepository.findOne(id);
     }
 
     /**

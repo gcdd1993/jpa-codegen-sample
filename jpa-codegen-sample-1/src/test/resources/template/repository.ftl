@@ -2,7 +2,7 @@ package ${packageName};
 
 import ${entity.packageName}.${entity.className};
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 <#list imports as import>
 import ${import};
 </#list>
@@ -14,5 +14,5 @@ import ${import};
  * @author ${author}
  * Created On ${date}.
  */
-public interface ${className} extends JpaRepository<${entity.className}, ${entity.id.className}>, QuerydslPredicateExecutor<${entity.className}> {
+public interface ${className} extends JpaRepository<${entity.className}, ${entity.id.className}>, QueryDslPredicateExecutor<${entity.className}> {
 }
