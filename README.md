@@ -1,4 +1,21 @@
-这是[jpa-codegen](https://github.com/gcdd1993/jpa-codegen)的使用示例仓库。
+这是[jpa-codegen](https://github.com/gcdd1993/jpa-codegen)的SpringBoot2.x示例仓库。
+
+Table of Contents
+=================
+
+   * [SpringBoot2.x](#springboot2x)
+      * [创建Gradle项目，并添加build.gradle如下](#创建gradle项目并添加buildgradle如下)
+      * [创建实体类SampleUser](#创建实体类sampleuser)
+      * [配置代码模板](#配置代码模板)
+      * [配置<a href="https://github.com/gcdd1993/jpa-codegen">jpa-codegen</a>生成器](#配置jpa-codegen生成器)
+      * [开始生成](#开始生成)
+      * [配置数据库连接信息](#配置数据库连接信息)
+      * [运行项目](#运行项目)
+         * [新增用户](#新增用户)
+      * [修改用户](#修改用户)
+      * [分页接口](#分页接口)
+      * [删除接口](#删除接口)
+   * [<a href="https://github.com/gcdd1993/jpa-codegen-sample/tree/master/jpa-codegen-sample-1">SpringBoot1.x</a>](#springboot1x)
 
 # SpringBoot2.x
 
